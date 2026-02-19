@@ -10,13 +10,17 @@ const AdminJobsTable = () => {
 
   const navigate = useNavigate();
   const { allAdminJob, searchTextByJob } = useSelector(store => store.job);
-  const [filterJob, setfilterJob] = useState(allAdminJob);
+  const [filterJob, setfilterJob] = useState([]);
 
   useEffect(() => {
-    const filteredJob = allAdminJob.length > 0 && allAdminJob.filter((job) => {
+    if (!allAdminJob || allAdminJob.length === 0) {
+      setfilterJob([]);
+      return;
+    }
+    const filteredJob = allAdminJob.filter((job) => {
       if (!searchTextByJob) {
         return true;
-      };
+      }
       return job?.title?.toLowerCase().includes(searchTextByJob.toLowerCase()) || job?.company?.name?.toLowerCase().includes(searchTextByJob.toLowerCase())
     })
     setfilterJob(filteredJob);
