@@ -36,7 +36,6 @@ const CompanySetup = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
     const formData = new FormData();
     formData.append("name", input.companyName);
     formData.append("description", input.description);
@@ -56,7 +55,6 @@ const CompanySetup = () => {
       });
       if (res.data.success) {
         toast.success(res.data.message);
-        console.log(res.data.company);
         navigate("/admin/companies");
         setInput({
           companyName: "",

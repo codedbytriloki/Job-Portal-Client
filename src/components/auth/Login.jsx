@@ -40,7 +40,6 @@ const Login = () => {
         },
         withCredentials: true
       });
-      console.log('login response:', res.data);
       if (res.data.success) {
         dispatch(setUser(res.data.user))
         toast.success(res.data.message);

@@ -35,7 +35,6 @@ const SignUp = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
     const formData = new FormData();
     formData.append("fullName", input.fullName);
     formData.append("email", input.email);

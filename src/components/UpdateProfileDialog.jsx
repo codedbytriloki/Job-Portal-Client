@@ -51,19 +51,16 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
       const res = await axios.post(`${USER_API_END_POINT}/profile/update`, formData, {
         withCredentials: true
       });
-      console.log(res);
       if (res.data.success) {
         dispatch(setUser(res.data.user));
         toast.success(res.data.message);
       }
     } catch (err) {
-      console.log(err);
       toast.error(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
     setOpen(false);
-    console.log(input, formData);
   }
 
   return (
