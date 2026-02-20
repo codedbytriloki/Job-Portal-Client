@@ -40,7 +40,8 @@ const ApplicantsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {applicants && applicants?.applications.map((applicant) => (
+          {/* guard against undefined by falling back to an empty array */}
+          {(applicants?.applications || []).map((applicant) => (
             <TableRow key={applicant._id}>
               <TableHead>{applicant?.applieant?.fullName}</TableHead>
               <TableHead>{applicant?.applieant?.email}</TableHead>

@@ -41,9 +41,23 @@ const JobCreate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // front-end sanity check before sending
+    if (!input.title || !input.description || !input.requirements || !input.salary || !input.location || !input.jobType || input.experience === "" || input.position === "" || !input.companyId) {
+      toast.error('Please fill all the fields');
+      return;
+    }
+
     try {
       setLoading(true);
-      const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
+      const payload = {
+        ...input,
+        salary: Number(input.salary),
+        experience: Number(input.experience),
+        position: Number(input.position),
+        requirements: input.requirements.trim()
+      };
+
+      const res = await axios.post(`${JOB_API_END_POINT}/post`, payload, {
         headers: {
           "Content-Type": "application/json"
         },
